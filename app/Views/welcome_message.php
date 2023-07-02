@@ -347,6 +347,7 @@
             {
                 targets: 0,
                 searchable: false,
+                orderable: false,
             },
             {
                 // The `data` parameter refers to the data for the cell (defined by the
@@ -376,6 +377,7 @@
                         <button type="button" class="btn btn-danger btn-sm ml-1" onclick="deleteTask(${row['id']})">Hapus</button>
                     `;
                 },
+                orderable: false,
                 targets: 3,
             },
             {

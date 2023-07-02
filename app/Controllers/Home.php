@@ -17,13 +17,17 @@ class Home extends BaseController
         $totalData = $builder->countAllResults();
         $totalFiltered = $totalData;
 
+        $columnOrder = $_POST['order'][0]['column'] === 1 ? "judul" : "status";
+
         // where disini
         if ($_POST['search']['value']) {
             $builder->like('judul', $_POST['search']['value']);
             $totalFiltered = $builder->countAllResults();
             $builder->limit($_POST['length'], $_POST['start']);
+            $builder->orderBy($columnOrder, $_POST['order'][0]['dir']);
             $data = $builder->like('judul', $_POST['search']['value'])->get()->getResult();   
         } else {
+            $builder->orderBy($columnOrder, $_POST['order'][0]['dir']);
             $builder->limit($_POST['length'], $_POST['start']);
             $data = $builder->get()->getResult();  
         }
