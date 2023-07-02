@@ -348,6 +348,9 @@
                 targets: 0,
                 searchable: false,
                 orderable: false,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                },
             },
             {
                 // The `data` parameter refers to the data for the cell (defined by the
@@ -386,17 +389,6 @@
             }
         ],
     });
-
-    table
-        .on('order.dt search.dt', function () {
-            var i = 1;
-            console.log('trigger');
-            table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-                console.log(cell);
-                this.data(i++);
-            });
-        })
-        .draw();
 
     $('#form-create').submit(function(e) {
         e.preventDefault();
